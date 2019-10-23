@@ -89,7 +89,7 @@ copiaPai <- function(obj){
 geraFilhos.default <- function(obj) {
   filhos <- c()
   if(obj$aspirador_pos_y == 1){ # Descer
-    if(obj$desc[1,obj$aspirador_pos_x] == '*'){ # Tem sujeira
+    if(obj$desc[2,obj$aspirador_pos_x] == '*'){ # Tem sujeira
       filho <- copiaPai(obj)
       filho$pai <- obj
       filho$desc[2,obj$aspirador_pos_x] <- 'A/*'
@@ -238,9 +238,9 @@ geraFilhos.default <- function(obj) {
     filho$pai <- obj
       filho$desc[obj$aspirador_pos_y,obj$aspirador_pos_x] <- 'A'
       filho$g <- 2
-      filho$f <- filho$g + filho$h
       filho$num_sujeiras <- filho$num_sujeiras -1
-      heuristica.default(filho, TRUE)
+      filho$h <- 0
+      filho$f <- filho$g + filho$h
       filhos <- c(filhos, filho)
   }
 
