@@ -2,17 +2,15 @@ debugSource("Aspirador.R")
 debugSource("buscaInformada.R")
 debugSource("buscaDesinformada.R")
 
-
+## Cria vetor aleatório, com duas sujeiras e o Aspirador
 vetor <- c('*','*','*','*')
 pos_aspirador <- sample(1:4, 1)
 while((pos_limpa <- sample(1:4,1)) == pos_aspirador)
     pos_limpa <- sample(1:4,1)
 vetor[pos_aspirador] <- 'A'
 vetor[pos_limpa] <- '0'
-
-c('*','0','A','*')
 desc_matriz = matrix(vetor, 2,2) # inicializa matriz 2x2
-desc_matriz
+
 inicial <- Estado(desc = desc_matriz)
 inicializa.Estado(inicial)
 
