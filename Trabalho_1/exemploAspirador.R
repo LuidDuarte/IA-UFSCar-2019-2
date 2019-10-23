@@ -1,10 +1,13 @@
-debugSource("Canibais.R")
+debugSource("Estado.R")
+debugSource("buscaDesinformada.R")
 debugSource("buscaInformada.R")
 
-inicial <- Canibais(desc = c(M = 3, C = 3, B = 1))
+desc_matriz = matrix(c('*','A','*','0'), 2,2) # inicializa matriz 2x2
 
-objetivo <- Canibais()
-objetivo$desc <- c(M = 0, C = 0, B = 0)
+inicial <- Estado(desc = desc_matriz)
+inicializa.Estado(inicial)
+objetivo <- Estado(desc = matrix(c(0),2,2))
+inicializa.Estado(final)
 
 cat("====\tBusca Best-First (Gulosa)\t=====\n")
 print(buscaBestFirst(inicial, objetivo, "Gulosa"))
