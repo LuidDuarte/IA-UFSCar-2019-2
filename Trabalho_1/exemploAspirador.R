@@ -7,7 +7,7 @@ desc_matriz = matrix(c('*','A','*','0'), 2,2) # inicializa matriz 2x2
 inicial <- Estado(desc = desc_matriz)
 inicializa.Estado(inicial)
 objetivo <- Estado(desc = matrix(c(0),2,2))
-inicializa.Estado(final)
+inicializa.Estado(objetivo)
 
 cat("====\tBusca Best-First (Gulosa)\t=====\n")
 print(buscaBestFirst(inicial, objetivo, "Gulosa"))

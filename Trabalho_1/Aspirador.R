@@ -1,4 +1,4 @@
-Estado <- function(desc=NULL,num_sujeiras=0, aspirador_pos_x=0, aspirador_pos_y=0){
+Estado <- function(desc=NULL){
   
   e <- environment()
   
@@ -66,9 +66,9 @@ heuristica <- function(atual, ...) {
 
 ## Função padrão para o método genérico "heuristica"
 ## Deve ser implementada para o problema específico
-heuristica.default <- function(atual, ...) {
-  print("Funcao Generica. Defina a heuristica para o seu problema!\n")
-  return(NULL)
+heuristica.default <- function(obj, tem_sujeira) {
+  h <- 2 * obj$num_sujeiras
+  obj$h <- if(tem_sujeira) h else h+1
 }
 
 ## Criação do método genérico "geraFilhos"
@@ -102,7 +102,7 @@ geraFilhos.default <- function(obj) {
       filho$aspirador_pos_y <- 2
       
       filho$g <- 3
-      filho$h <- 2 * obj$num_sujeiras
+      heuristica.default(filho, TRUE)
       filho$f <- filho$g + filho$h
 
       filhos <- c(filhos, filho)
@@ -119,7 +119,7 @@ geraFilhos.default <- function(obj) {
       }
       filho$aspirador_pos_y <- 2
       filho$g <- 3
-      filho$h <- (2 * obj$num_sujeiras) + 1
+      heuristica.default(filho, FALSE)
       filho$f <- filho$g + filho$h
 
       filhos <- c(filhos, filho)
@@ -138,7 +138,7 @@ geraFilhos.default <- function(obj) {
       }
       filho$aspirador_pos_y <- 1
       filho$g <- 3
-      filho$h <- 2 * obj$num_sujeiras
+      heuristica.default(filho, TRUE)
       filho$f <- filho$g + filho$h
 
       filhos <- c(filhos, filho)
@@ -155,7 +155,7 @@ geraFilhos.default <- function(obj) {
       }      
       filho$aspirador_pos_y <- 1
       filho$g <- 3
-      filho$h <- (2 * obj$num_sujeiras) + 1
+      heuristica.default(filho, FALSE)
       filho$f <- filho$g + filho$h
 
       filhos <- c(filhos, filho)
@@ -174,7 +174,7 @@ geraFilhos.default <- function(obj) {
       }      
       filho$aspirador_pos_x <- 2
       filho$g <- 1
-      filho$h <- 2 * obj$num_sujeiras
+      heuristica.default(filho, TRUE)
       filho$f <- filho$g + filho$h
 
       filhos <- c(filhos, filho)
@@ -191,7 +191,7 @@ geraFilhos.default <- function(obj) {
       }      
       filho$aspirador_pos_x <- 2
       filho$g <- 1
-      filho$h <- (2 * obj$num_sujeiras) + 1
+      heuristica.default(filho, FALSE)
       filho$f <- filho$g + filho$h
 
       filhos <- c(filhos, filho)
@@ -210,7 +210,7 @@ geraFilhos.default <- function(obj) {
       }     
       filho$aspirador_pos_x <- 1
       filho$g <- 1
-      filho$h <- 2 * obj$num_sujeiras
+      heuristica.default(filho, TRUE)
       filho$f <- filho$g + filho$h
 
       filhos <- c(filhos, filho)
@@ -227,7 +227,7 @@ geraFilhos.default <- function(obj) {
       }     
       filho$aspirador_pos_x <- 1
       filho$g <- 1
-      filho$h <- (2 * obj$num_sujeiras) + 1
+      heuristica.default(filho, FALSE)
       filho$f <- filho$g + filho$h
 
       filhos <- c(filhos, filho)
@@ -240,7 +240,7 @@ geraFilhos.default <- function(obj) {
       filho$g <- 2
       filho$f <- filho$g + filho$h
       filho$num_sujeiras <- filho$num_sujeiras -1
-      filho$h <- 2 * obj$num_sujeiras
+      heuristica.default(filho, TRUE)
       filhos <- c(filhos, filho)
   }
 
